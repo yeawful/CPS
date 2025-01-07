@@ -1,283 +1,227 @@
-html {
-    box-sizing: border-box;
-}
+@import url(/src/css/reset.css); /* Сбрасывает стандартные стили браузера */
+@import url(/src/fonts/font.css); /* Стили шрифтов в отдельном css, чтобы тут не занимали место */
 
-*,*::after,*::before {
-    box-sizing: inherit;
-}
 
 body {
-    min-width: 320px;
-    overflow-x: hidden;
+    font-family: "TT Lakes", sans-serif; /* Устанавливает шрифт для всего body */
+    background-color: rgb(248, 248, 248);  /* Фоновый цвет страницы */
+    color: rgb(27, 28, 33); /* Базовый цвет текста для всей страницы  */
+    font-size: 14px; /* Базовый размер шрифта для всей страницы */
+    overflow-x: hidden; /* Скрывает горизонтальную прокрутку */
 }
 
-@font-face {
-    font-family: 'TT Lakes Bold';
-    src: url('../fonts/TTLakes-Bold.eot');
-    src: url('../fonts/TTLakes-Bold.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/TTLakes-Bold.woff') format('woff'),
-    url('../fonts/TTLakes-Bold.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+html {
+    box-sizing: border-box; /* Включает padding и border в общую ширину и высоту элемента */
+    --container-width: calc(1056px + var(--container-padding) * 2); /* Формула определения ширины контейнера в зависимости от padding */
+    --container-padding: 32px; /* Определяет CSS-переменную для отступа контейнера */
 }
 
-@font-face {
-    font-family: 'TT Lakes Medium';
-    src: url('../fonts/TTLakes-Medium.eot');
-    src: url('../fonts/TTLakes-Medium.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/TTLakes-Medium.woff') format('woff'),
-    url('../fonts/TTLakes-Medium.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}  
-
-.title {
-    font-family: 'TT Lakes Bold';
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    margin-top: 48px;
+button {
+    cursor: pointer; /* Изменяет курсор на указатель при наведении */
 }
 
 .container {
-    position: relative;
-    padding: 0 16px;
-    margin: 0 auto;
+    max-width: var(--container-width); /* Ограничивает максимальную ширину контейнера значением переменной --container-width */
+    padding: 0 var(--container-padding); /* Устанавливает внутренние отступы слева и справа равными значению переменной --container-padding */
+    margin: 0 auto; /* Горизонтальный центр */
 }
-@media (min-width: 768px){
-    .container{
-        padding: 0 24px;
+
+.nav {
+    position: relative; /* Относительное позиционирование */
+}
+  
+.nav__left {
+    display: flex; /* Устанавливает flexbox-контейнер */
+    align-items: center; /* Выравнивает элементы по вертикали по центру */
+    gap: 20px; /* Устанавливает промежуток между элементами */
+}
+  
+.burger-menu {
+    display: none; /* Скрывает элемент по умолчанию */
+    align-items: center; /* Выравнивает элементы по вертикали по центру */ 
+    min-width: 40px; /* Минимальная ширина бургерной иконки */
+    height: 40px; /* Высота бургерной иконки */
+    background-color: rgba(255, 62, 121, 1); /* Фон бургерной иконки */
+    border-radius: 50%; /* Закругление бургерной иконки */
+    cursor: pointer; /* Изменяет курсор на указатель при наведении */
+}
+  
+.burger-menu > span {
+    display: inline-block; /* Блочные элементы в одной строке */
+    position: relative; /* Относительное позиционирование */
+    margin-left: 11px; /* Левый внешний отступ */
+    width: 10px; /* Ширина */
+    height: 2px; /* Высота */
+    border-radius: 2px; /* Закругление элементов в кнопке*/
+    background-color: #fff; /* Цвет элементов в кнопке */
+  }
+  
+  .burger-menu > span::before {
+    content: ""; /* Содержимое псевдоэлемента */
+    display: inline-block; /* Блочные элементы в одной строке */
+    position: absolute; /* Абсолютное позиционирование */
+    top: -7px; /* Верхний отступ */
+    left: 0; /* Левый отступ */
+    width: 18px; /* Ширина */
+    height: 2px; /* Высота */
+    border-radius: 2px; /* Закругление */
+    background-color: #fff; /* Цвет элемента */
+  }
+  
+  .burger-menu > span::after {
+    content: ""; /* Содержимое псевдоэлемента */
+    display: inline-block; /* Блочные элементы в одной строке */
+    position: absolute; /* Абсолютное позиционирование */
+    top: 7px; /* Верхний отступ */
+    left: 0; /* Левый отступ */
+    width: 14px; /* Ширина */
+    height: 2px; /* Высота */
+    border-radius: 2px; /* Закругление */
+    background-color: #fff; /* Цвет элемента */
+  }
+
+  .nav__logo {
+    display: none; /* Скрывает элемент */
+  }
+
+  .nav__logo::before { /* Разделитель вертикальный */
+    content: ""; /* Содержимое псевдоэлемента */
+    display: inline-block; /* Блочные элементы в одной строке */
+    width: 2px; /* Ширина */
+    height: 32px; /* Высота */
+    border-radius: 2px; /* Закругление */
+    background-color: #eaeaea; /* Цвет элемента */
+    margin-right: 20px; /* Правый отступ */
+  }
+  
+  .nav__right {
+    display: flex; /* Устанавливает flexbox-контейнер */
+    align-content: center; /* Выравнивает элементы по вертикали по центру */
+    position: absolute; /* Абсолютное позиционирование */
+    right: 0; /* Правый отступ */
+    top: 0; /* Верхний отступ */
+  }
+  
+  .nav-links {
+    display: flex; /* Устанавливает flexbox-контейнер */
+    gap: 32px; /* Промежутки между элементами */
+    padding-top: 42px; /* Верхний внутренний отступ */
+    padding-right: calc((50vw - var(--container-width) / 2) + 34px); /* Правый внутренний отступ с использованием вычисления */
+    font-weight: 500; /* Толщина шрифта */
+  }
+  
+  .nav-links__item {
+    height: 40px; /* Высота */
+    display: flex; /* Устанавливает flexbox-контейнер */
+    gap: 9px; /* Промежутки между элементами */
+    align-items: center; /* Выравнивает элементы по вертикали по центру */ 
+    font-size: 16px; /* Размер шрифта */
+  }
+  
+  .nav-links__img {
+    display: flex; /* Устанавливает flexbox-контейнер */
+    justify-content: center; /* Выравнивает элементы по горизонтали по центру */
+    align-items: center; /* Выравнивает элементы по вертикали по центру */  
+    min-width: 40px; /* Минимальная ширина */
+    min-height: 40px; /* Минимальная высота */
+  }
+
+  .nav-links > :nth-child(-n + 3) { /* Применяется к первым трем дочерним элементам .nav-links (call, chat, profile) */
+    display: none; /* Скрывает элемент */
+  }
+  
+/* Медиа-запросы для 1120*/
+
+  @media screen and (max-width: 1119px) {
+    html {
+      --container-padding: 24px; /* Меняет отступы */
     }
-}
-@media (min-width: 1120px){
-    .container{
-        padding: 0 42px;
-        background-color: #F8F8F8;
+  
+    .nav-links > :nth-child(-n + 3) { /* Применяется к первым трем дочерним элементам .nav-links (call, chat, profile) */
+      display: block; /* Устанавливает отображение как block */
     }
-}
-
-.header {
-   background-color: #FFFFFF; 
-}
-
-.header .header_inner {
-    min-height: 88px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.menu_btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-    background-color: #FF3E79;
-    border: none;
-    position: relative;
-}
-
-.menu_btn .menu_img {
-    width: 18px;
-    height: 16px;
-    top: 12px;
-    left: 11px;
-    position: absolute;
-}
-
-.navlogo {
-    display: block;
-    min-height: 50px;
-}
-
-.navlogo .navlogo_link {
-    margin-left: 0px;
-}
-
-.navdivider {
-    display: block;
-    width: 2px;
-    height: 32px;
-}
-@media (max-width: 767px){
-    .navdivider {
-        display: none;
+  
+    .nav-links > :nth-last-child(2) { /* Применяется ко второму с конца дочернему элементу .nav-links (repair) */
+      position: relative; /* Относительное позиционирование */
+      margin-left: 20px; /* Левый отступ */
     }
-}
-
-.call_btn {
-    display: block;
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-    background-color: #FF3E79;
-    border: none;
-    position: relative;
-    margin-left: 250px;
-}
-
-.call_btn .call_img {
-    display: block;
-    width: 18px;
-    height: 18px;
-    top: 11px;
-    left: 11px;
-    position: absolute;
-}
-
-.chat_btn {
-    display: block;
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-    background-color: #FF3E79;
-    border: none;
-    position: relative;
-}
-
-.chat_btn .chat_img {
-    display: block;
-    width: 20px;
-    height: 20px;
-    top: 11px;
-    bottom: 9px;
-    left: 10px;
-    position: absolute;
-}
-
-.profile_btn {
-    display: block;
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-    background-color: #FF3E79;
-    border: none;
-    position: relative;
-}
-
-.profile_btn .profile_img {
-    display: block;
-    width: 20px;
-    height: 18px;
-    top: 10px;
-    bottom: 12px;
-    left: 10px;
-    position: absolute;
-}
-
-.navdivider2 {
-    display: block;
-    width: 2px;
-    height: 32px;
-}
-@media (max-width: 767px){
-    .navdivider2 {
-        margin-left: -50px;
+  
+    .nav-links > :nth-last-child(2)::before { /* Применяется к псевдоэлементу ::before второго с конца дочернего элемента .nav-links (Разделитель) */
+      content: ""; /* Содержимое псевдоэлемента */
+      position: absolute; /* Абсолютное позиционирование */
+      margin-top: 4px; /* Верхний отступ */
+      top: 0; /* Верхний отступ */
+      left: -20px; /* Левый отступ */
+      width: 2px; /* Ширина */
+      height: 32px; /* Высота */
+      border-radius: 2px; /* Закругление */
+      margin-right: 20px; /* Правый отступ */
+      background-color: #eaeaea; /* Фоновыц цвет */
     }
-}
-
-.repair {
-    height: 40px;
-}
-
-.repair .repair_btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-    background-color: #FF3E79;
-    border: none;
-    position: relative;
-}
-
-.repair_txt {
-    display: block;
-    font-family: 'TT Lakes Medium';
-    font-size: 16px;
-    margin-top: 42px;
-    margin-left: 450px;
-}
-
-.repair .repair_btn .repair_img {
-    width: 20px;
-    height: 20px;
-    top: 10px;
-    left: 10px;
-    position: absolute;
-}
-
-.checkstatus {
-    display: block;
-    position: relative;
-    height: 40px;
-}
-@media (min-width: 1120px){
-    .checkstatus,
-    .repair {
-        margin-top: 42px;
-        margin-left: 8px;
-        margin-right: 32px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+  
+    .nav-links {
+      gap: 20px; /* Промежутки между элементами */
+      padding: 0; /* Убирает внутренние отступы */
     }
-}
-
-.checkstatus_txt {
-    position: relative;
-    font-family: 'TT Lakes Medium';
-    font-size: 16px;
-    margin-top: 42px;
-    margin-left: 32px;
-}
-
-.checkstatus .checkstatus_btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-    background-color: #FF3E79;
-    border: none;
-    position: relative;
-}
-
-.checkstatus .checkstatus_btn .checkstatus_img {
-    width: 16px;
-    height: 20px;
-    top: 10px;
-    left: 12px;
-    position: absolute;
-}
-
-@media (max-width: 1119px){
-    .title,
-    .repair_txt,
-    .checkstatus_txt {
-        display: none;
+  
+    .nav-links__item {
+      display: inline-block; /* Блочные элементы в одной строке */
     }
-}
-
-@media (max-width: 767px){
-    .call_btn,
-    .chat_btn,
-    .profile_btn,
-    .call_btn .call_img,
-    .chat_btn .chat_img,
-    .profile_btn .profile_img {
-        display: none;
+  
+    .nav-links__item span {
+      display: none; /* Скрывает элемент */
     }
-}
-
-@media (min-width: 1120px){
-    .call_btn,
-    .chat_btn,
-    .profile_btn,
-    .call_btn .call_img,
-    .chat_btn .chat_img,
-    .profile_btn .profile_img,
-    .navlogo,
-    .navlogo .navlogo_link,
-    .menu_btn,
-    .menu_btn .menu_img,
-    .navdivider,
-    .navdivider2 {
-        display: none;
+  
+    .nav {
+      display: flex; /* Устанавливает flexbox-контейнер */
+      justify-content: space-between; /* Распределяет элементы с равными промежутками между ними */
+      background-color: #fff; /* Фоновый цвет */
+      padding: 18px var(--container-padding); /* Устанавливает внутренние отступы */
     }
-}
+  
+    .nav__right {
+      position: inherit; /* Устанавливает наследуемое позиционирование */
+      display: block; /* Устанавливает отображение как block */
+    }
+  
+    .burger-menu {
+      display: flex; /* Устанавливает flexbox-контейнер */
+    }
+  
+    .nav__logo {
+      display: flex; /* Устанавливает flexbox-контейнер */
+      align-items: center; /* Выравнивает элементы по вертикали по центру */  
+    }
+  
+    .nav__logo img {
+      min-width: 97px; /* Минимальная ширина */
+      min-height: 51px; /* Минимальная высота */
+    }
+  
+  }
+
+  
+/* Медиа-запросы для 768*/
+  
+  @media screen and (max-width: 767px) { 
+    html {
+      --container-padding: 16px; /* Меняет отступы */
+    }
+  
+    .nav-links > :nth-child(-n + 3) { /* Применяется к первым трем дочерним элементам .nav-links (call, chat, profile) */
+      display: none; /* Скрывает элемент */
+    }
+
+    .nav__logo::before { /* (Разделитель) */
+        display: none; /* Скрывает элемент */
+    }
+
+    .nav__left {
+      gap: 16px; /* Промежутки между элементами */
+    }
+  
+    .nav-links {
+      gap: 16px; /* Промежутки между элементами */
+    }
+  }
+  

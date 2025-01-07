@@ -18,6 +18,10 @@ html {
 
 button {
     cursor: pointer; /* Изменяет курсор на указатель при наведении */
+} 
+
+.header__about {
+  padding-top: 42px; /* Верхний внутренний отступ */
 }
 
 .container {
@@ -37,191 +41,301 @@ button {
 }
   
 .burger-menu {
-    display: none; /* Скрывает элемент по умолчанию */
-    align-items: center; /* Выравнивает элементы по вертикали по центру */ 
-    min-width: 40px; /* Минимальная ширина бургерной иконки */
-    height: 40px; /* Высота бургерной иконки */
-    background-color: rgba(255, 62, 121, 1); /* Фон бургерной иконки */
-    border-radius: 50%; /* Закругление бургерной иконки */
-    cursor: pointer; /* Изменяет курсор на указатель при наведении */
+  display: none; /* Скрывает элемент по умолчанию */
+  align-items: center; /* Выравнивает элементы по вертикали по центру */
+  min-width: 40px; /* Минимальная ширина бургерной иконки */
+  height: 40px; /* Высота бургерной иконки */
+  background-color: rgba(255, 62, 121, 1); /* Фон бургерной иконки */
+  border-radius: 50%; /* Закругление бургерной иконки */
+  cursor: pointer; /* Изменяет курсор на указатель при наведении */
+  padding: 0; /* Убирает внутренние отступы */
+  border: none; /* Убирает границы */
+}
+
+.burger-menu img {
+  width: 40px; /* Ширина SVG-изображения */
+  height: 40px; /* Высота SVG-изображения */
+}
+
+.nav__logo {
+  display: none; /* Скрывает элемент */
+}
+
+.nav__logo::before { /* Разделитель вертикальный */
+  content: ""; /* Содержимое псевдоэлемента */
+  display: inline-block; /* Блочные элементы в одной строке */
+  width: 2px; /* Ширина */
+  height: 32px; /* Высота */
+  border-radius: 2px; /* Закругление */
+  background-color: #eaeaea; /* Цвет элемента */
+  margin-right: 20px; /* Правый отступ */
 }
   
-.burger-menu > span {
-    display: inline-block; /* Блочные элементы в одной строке */
+.nav__right {
+  display: flex; /* Устанавливает flexbox-контейнер */
+  align-content: center; /* Выравнивает элементы по вертикали по центру */
+  position: absolute; /* Абсолютное позиционирование */
+  right: 0; /* Правый отступ */
+  top: 0; /* Верхний отступ */
+}
+  
+.nav-links {
+  display: flex; /* Устанавливает flexbox-контейнер */
+  gap: 32px; /* Промежутки между элементами */
+  padding-top: 42px; /* Верхний внутренний отступ */
+  padding-right: calc((50vw - var(--container-width) / 2) + 34px); /* Правый внутренний отступ с использованием вычисления */
+  font-weight: 500; /* Толщина шрифта */
+}
+  
+.nav-links__item {
+  height: 40px; /* Высота */
+  display: flex; /* Устанавливает flexbox-контейнер */
+  gap: 9px; /* Промежутки между элементами */
+  align-items: center; /* Выравнивает элементы по вертикали по центру */ 
+  font-size: 16px; /* Размер шрифта */
+}
+  
+.nav-links__img {
+  display: flex; /* Устанавливает flexbox-контейнер */
+  justify-content: center; /* Выравнивает элементы по горизонтали по центру */
+  align-items: center; /* Выравнивает элементы по вертикали по центру */  
+  min-width: 40px; /* Минимальная ширина */
+  min-height: 40px; /* Минимальная высота */
+}
+
+.nav-links > :nth-child(-n + 3) { /* Применяется к первым трем дочерним элементам .nav-links (call, chat, profile) */
+  display: none; /* Скрывает элемент */
+}
+
+.about__title {
+  position: relative; /* Относительное позиционирование */
+  font-size: 28px; /* Размер шрифта */
+  font-weight: 700; /* Толщина шрифта */
+  margin-bottom: 8px; /* Нижний внешний отступ */
+  z-index: -1; /* Порядок наложения (Принцип карточной колоды) */
+}
+.about__title::before {
+  content: ""; /* Содержимое псевдоэлемента */
+  position: absolute; /* Абсолютное позиционирование */
+  width: 4px; /* Ширина */
+  height: 40px; /* Высота */
+  top: -5px;  /* Верхний отступ */
+  left: -32px; /* Левый отступ */
+  border-radius: 3px; /* Закругление */
+  background-color: rgb(65, 246, 215); /* Цвет */
+}
+
+.category-list {
+  display: flex; /* Устанавливает flexbox-контейнер */
+  gap: 10px; /* Промежутки между элементами */
+  overflow-y: auto; /* Устанавливает вертикальную прокрутку */
+  white-space: nowrap; /* Устанавливает обработку пробелов */
+  scrollbar-width: none; /* Устанавливает ширину полосы прокрутки */
+  margin-top: 32px; /* Отступ сверху  */
+}
+.category-list::-webkit-scrollbar {
+  display: none; /* Скрывает элемент */
+}
+.category-list__item { 
+  color: rgba(126, 126, 130, 1); /* Устанавливает цвет текста */
+  padding: 8px 22px; /* Внутренние отступы */
+  user-select: none; /* Запрещает выделение текста */
+  transition: 0.2s; /* Устанавливает анимацию перехода */
+}
+.category-list__item--active {  /* Активный пункт */
+  outline: 2px rgba(184, 255, 236, 1) solid; /* Контур активного пункта */
+  border-radius: 6px; /* Скругление */
+  outline-offset: -2px; /* Смещение контура */
+  background-color: #fff; /* Фоновый цвет */
+}
+
+.about__feedback {
+  color: rgb(126, 126, 130); /* Устанавливает цвет текста */
+  padding: 15px 0 19px 24px; /* Внутренние отступы */
+  font-size: 16px; /* Размер шрифта */
+}
+.about__row {
+  display: flex; /* Устанавливает flexbox-контейнер */
+  justify-content: space-between; /* Распределяет элементы с равными промежутками между ними */
+  padding-bottom: 51px; /* Внутренний нижний отступ */
+  gap: 16px; /* Промежутки между элементами */
+}
+
+.about__row-right img {
+  min-width: 531px; /* Минимальная ширина */
+  min-height: 308px; /* Минимальная высота */
+}
+.about__text {
+  padding-bottom: 14px; /* Внутренний нижний отступ */
+  display: block; /* Блочный элемент */
+  overflow: hidden; /* Скрывает содержимое, которое выходит за пределы элемента */
+  text-overflow: ellipsis; /* Добавляет многоточие (...) в конце строки, если текст не помещается */
+  transition: all 0.4s ease-in;
+}
+.about__paragraph {
+  line-height: 22px; /* Высота строки */
+  max-width: 490px; /* Максимальная ширина */
+}
+.about__paragraph--open {
+  max-height: 305px !important; /* Максимальная высота с приоритетом */
+}
+.about__paragraph + .about__paragraph {
+  padding-top: 26px; /* Внутренний верхний отступ */
+}
+.about__read-more {
+  display: flex; /* Устанавливает flexbox-контейнер */
+  padding: 0 0 0 6px; /* Внутренние отступы */
+  gap: 16px; /* Промежутки между элементами */
+  align-items: center; /* Выравнивает элементы по вертикали по центру */
+  font-weight: 500; /* Толщина шрифта */
+  margin-top: 12px; /* Отступ сверху  */
+}
+
+/* Медиа-запросы для 1120*/
+@media screen and (width >= 1120px) {
+  .about__title {
+    margin-top: 45px; /* Верхний внешний отступ */
+  }
+  .category-list {
+    margin-top: 20px; /* Отступ сверху  */
+  }
+  .about__read-more {
+    margin-top: 8px; /* Отступ сверху  */
+  }
+}
+
+
+@media screen and (max-width: 1119px) {
+  html {
+    --container-padding: 24px; /* Меняет отступы */
+  }
+  
+  .nav-links > :nth-child(-n + 3) { /* Применяется к первым трем дочерним элементам .nav-links (call, chat, profile) */
+    display: block; /* Устанавливает отображение как block */
+  }
+  
+  .nav-links > :nth-last-child(2) { /* Применяется ко второму с конца дочернему элементу .nav-links (repair) */
     position: relative; /* Относительное позиционирование */
-    margin-left: 11px; /* Левый внешний отступ */
-    width: 10px; /* Ширина */
-    height: 2px; /* Высота */
-    border-radius: 2px; /* Закругление элементов в кнопке*/
-    background-color: #fff; /* Цвет элементов в кнопке */
+    margin-left: 20px; /* Левый отступ */
   }
   
-  .burger-menu > span::before {
+  .nav-links > :nth-last-child(2)::before { /* Применяется к псевдоэлементу ::before второго с конца дочернего элемента .nav-links (Разделитель) */
     content: ""; /* Содержимое псевдоэлемента */
-    display: inline-block; /* Блочные элементы в одной строке */
     position: absolute; /* Абсолютное позиционирование */
-    top: -7px; /* Верхний отступ */
-    left: 0; /* Левый отступ */
-    width: 18px; /* Ширина */
-    height: 2px; /* Высота */
-    border-radius: 2px; /* Закругление */
-    background-color: #fff; /* Цвет элемента */
-  }
-  
-  .burger-menu > span::after {
-    content: ""; /* Содержимое псевдоэлемента */
-    display: inline-block; /* Блочные элементы в одной строке */
-    position: absolute; /* Абсолютное позиционирование */
-    top: 7px; /* Верхний отступ */
-    left: 0; /* Левый отступ */
-    width: 14px; /* Ширина */
-    height: 2px; /* Высота */
-    border-radius: 2px; /* Закругление */
-    background-color: #fff; /* Цвет элемента */
-  }
-
-  .nav__logo {
-    display: none; /* Скрывает элемент */
-  }
-
-  .nav__logo::before { /* Разделитель вертикальный */
-    content: ""; /* Содержимое псевдоэлемента */
-    display: inline-block; /* Блочные элементы в одной строке */
+    margin-top: 4px; /* Верхний отступ */
+    top: 0; /* Верхний отступ */
+    left: -20px; /* Левый отступ */
     width: 2px; /* Ширина */
     height: 32px; /* Высота */
     border-radius: 2px; /* Закругление */
-    background-color: #eaeaea; /* Цвет элемента */
     margin-right: 20px; /* Правый отступ */
-  }
-  
-  .nav__right {
-    display: flex; /* Устанавливает flexbox-контейнер */
-    align-content: center; /* Выравнивает элементы по вертикали по центру */
-    position: absolute; /* Абсолютное позиционирование */
-    right: 0; /* Правый отступ */
-    top: 0; /* Верхний отступ */
+    background-color: #eaeaea; /* Фоновыц цвет */
   }
   
   .nav-links {
-    display: flex; /* Устанавливает flexbox-контейнер */
-    gap: 32px; /* Промежутки между элементами */
-    padding-top: 42px; /* Верхний внутренний отступ */
-    padding-right: calc((50vw - var(--container-width) / 2) + 34px); /* Правый внутренний отступ с использованием вычисления */
-    font-weight: 500; /* Толщина шрифта */
+    gap: 20px; /* Промежутки между элементами */
+    padding: 0; /* Убирает внутренние отступы */
   }
   
   .nav-links__item {
-    height: 40px; /* Высота */
-    display: flex; /* Устанавливает flexbox-контейнер */
-    gap: 9px; /* Промежутки между элементами */
-    align-items: center; /* Выравнивает элементы по вертикали по центру */ 
-    font-size: 16px; /* Размер шрифта */
+    display: inline-block; /* Блочные элементы в одной строке */
   }
   
-  .nav-links__img {
-    display: flex; /* Устанавливает flexbox-контейнер */
-    justify-content: center; /* Выравнивает элементы по горизонтали по центру */
-    align-items: center; /* Выравнивает элементы по вертикали по центру */  
-    min-width: 40px; /* Минимальная ширина */
-    min-height: 40px; /* Минимальная высота */
-  }
-
-  .nav-links > :nth-child(-n + 3) { /* Применяется к первым трем дочерним элементам .nav-links (call, chat, profile) */
+  .nav-links__item span {
     display: none; /* Скрывает элемент */
   }
   
-/* Медиа-запросы для 1120*/
-
-  @media screen and (max-width: 1119px) {
-    html {
-      --container-padding: 24px; /* Меняет отступы */
-    }
+  .nav {
+    display: flex; /* Устанавливает flexbox-контейнер */
+    justify-content: space-between; /* Распределяет элементы с равными промежутками между ними */
+    background-color: #fff; /* Фоновый цвет */
+    padding: 18px var(--container-padding); /* Устанавливает внутренние отступы */
+  }
   
-    .nav-links > :nth-child(-n + 3) { /* Применяется к первым трем дочерним элементам .nav-links (call, chat, profile) */
-      display: block; /* Устанавливает отображение как block */
-    }
+  .nav__right {
+    position: inherit; /* Устанавливает наследуемое позиционирование */
+    display: block; /* Устанавливает отображение как block */
+  }
   
-    .nav-links > :nth-last-child(2) { /* Применяется ко второму с конца дочернему элементу .nav-links (repair) */
-      position: relative; /* Относительное позиционирование */
-      margin-left: 20px; /* Левый отступ */
-    }
+  .burger-menu {
+    display: flex; /* Устанавливает flexbox-контейнер */
+  }
   
-    .nav-links > :nth-last-child(2)::before { /* Применяется к псевдоэлементу ::before второго с конца дочернего элемента .nav-links (Разделитель) */
-      content: ""; /* Содержимое псевдоэлемента */
-      position: absolute; /* Абсолютное позиционирование */
-      margin-top: 4px; /* Верхний отступ */
-      top: 0; /* Верхний отступ */
-      left: -20px; /* Левый отступ */
-      width: 2px; /* Ширина */
-      height: 32px; /* Высота */
-      border-radius: 2px; /* Закругление */
-      margin-right: 20px; /* Правый отступ */
-      background-color: #eaeaea; /* Фоновыц цвет */
-    }
+  .nav__logo {
+    display: flex; /* Устанавливает flexbox-контейнер */
+    align-items: center; /* Выравнивает элементы по вертикали по центру */  
+  }
   
-    .nav-links {
-      gap: 20px; /* Промежутки между элементами */
-      padding: 0; /* Убирает внутренние отступы */
-    }
-  
-    .nav-links__item {
-      display: inline-block; /* Блочные элементы в одной строке */
-    }
-  
-    .nav-links__item span {
-      display: none; /* Скрывает элемент */
-    }
-  
-    .nav {
-      display: flex; /* Устанавливает flexbox-контейнер */
-      justify-content: space-between; /* Распределяет элементы с равными промежутками между ними */
-      background-color: #fff; /* Фоновый цвет */
-      padding: 18px var(--container-padding); /* Устанавливает внутренние отступы */
-    }
-  
-    .nav__right {
-      position: inherit; /* Устанавливает наследуемое позиционирование */
-      display: block; /* Устанавливает отображение как block */
-    }
-  
-    .burger-menu {
-      display: flex; /* Устанавливает flexbox-контейнер */
-    }
-  
-    .nav__logo {
-      display: flex; /* Устанавливает flexbox-контейнер */
-      align-items: center; /* Выравнивает элементы по вертикали по центру */  
-    }
-  
-    .nav__logo img {
-      min-width: 97px; /* Минимальная ширина */
-      min-height: 51px; /* Минимальная высота */
-    }
-  
+  .nav__logo img {
+    min-width: 97px; /* Минимальная ширина в 1120 */
+    min-height: 51px; /* Минимальная высота в 1120 */
   }
 
+  .header__about {
+    padding-top: 0; /* Верхний внутренний отступ */
+  }
+
+  .about__title {
+    margin-top: 42px; /* Верхний внешний отступ */
+  }
+
+  .about__row {
+    display: flex; /* Устанавливает flexbox-контейнер */
+    justify-content: space-between; /* Распределяет элементы с равными промежутками между ними */
+    margin-top: 32px; /* Верхний внешний отступ */
+  }
+  .about__feedback {
+    display: none; /* Скрывает элемент */
+  }
+  .about__text {
+    max-height: 160px;/* Максимальная высота в 1120 */
+  }
+  .about__row-right img {
+    min-width: 360px; /* Минимальная ширина в 1120 */
+    min-height: 208px; /* Минимальная высота в 1120 */ 
+  }
+  .about__title::before {
+    left: -24px; /* Изменяем левый отступ для экранов шириной до 1119px */
+    top: -5px; /* Верхний отступ */
+  }
+}
   
 /* Медиа-запросы для 768*/
   
-  @media screen and (max-width: 767px) { 
-    html {
-      --container-padding: 16px; /* Меняет отступы */
-    }
-  
-    .nav-links > :nth-child(-n + 3) { /* Применяется к первым трем дочерним элементам .nav-links (call, chat, profile) */
-      display: none; /* Скрывает элемент */
-    }
-
-    .nav__logo::before { /* (Разделитель) */
-        display: none; /* Скрывает элемент */
-    }
-
-    .nav__left {
-      gap: 16px; /* Промежутки между элементами */
-    }
-  
-    .nav-links {
-      gap: 16px; /* Промежутки между элементами */
-    }
+@media screen and (max-width: 767px) { 
+  html {
+    --container-padding: 16px; /* Меняет отступы */
   }
   
+  .nav-links > :nth-child(-n + 3) { /* Применяется к первым трем дочерним элементам .nav-links (call, chat, profile) */
+    display: none; /* Скрывает элемент */
+  }
+
+  .nav__logo::before { /* (Разделитель) */
+    display: none; /* Скрывает элемент */
+  }
+
+  .nav__left {
+    gap: 16px; /* Промежутки между элементами */
+  }
+  
+  .nav-links {
+    gap: 16px; /* Промежутки между элементами */
+  }
+  .about__row-right img { /* Картинка справа */
+    min-width: 320px;  /* Минимальная ширина в 768 */
+    min-height: 176px; /* Минимальная высота в 768 */
+  }
+  .about__row {
+    flex-direction: column;  /* Вертикальное расположение флекса */
+    align-items: center; /* Центрирование */
+    margin-top: 24px; /* Отступ сверху  */
+  }
+  .about__text {
+    max-height: 90px; /* Макс высота в 768*/
+  }
+  .about__title::before {
+    left: -16px; /* Изменяем левый отступ для экранов шириной до 767px */
+    top: -5px; /* Верхний отступ */
+  }
+}

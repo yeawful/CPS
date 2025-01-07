@@ -132,6 +132,7 @@ button {
   white-space: nowrap; /* Устанавливает обработку пробелов */
   scrollbar-width: none; /* Устанавливает ширину полосы прокрутки */
   margin-top: 32px; /* Отступ сверху  */
+  font-size: 16px;
 }
 .category-list::-webkit-scrollbar {
   display: none; /* Скрывает элемент */
@@ -198,6 +199,7 @@ button {
   }
   .category-list {
     margin-top: 20px; /* Отступ сверху  */
+    gap: 0px; /* Промежутки между элементами */
   }
   .about__read-more {
     margin-top: 8px; /* Отступ сверху  */
@@ -337,5 +339,14 @@ button {
   .about__title::before {
     left: -16px; /* Изменяем левый отступ для экранов шириной до 767px */
     top: -5px; /* Верхний отступ */
+  }
+  .category-list {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 320px) { 
+  .category-list {
+    font-size: 14px;
   }
 }

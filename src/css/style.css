@@ -162,7 +162,7 @@ button {
   gap: 16px; /* Промежутки между элементами */
 }
 
-.about__row-right img {
+.about__image img {
   min-width: 531px; /* Минимальная ширина */
   min-height: 308px; /* Минимальная высота */
 }
@@ -177,8 +177,8 @@ button {
   line-height: 22px; /* Высота строки */
   max-width: 490px; /* Максимальная ширина */
 }
-.about__paragraph--open {
-  max-height: 305px !important; /* Максимальная высота с приоритетом */
+.about-row .about-text .about-paragraph--open {
+  max-height: 305px; /* Максимальная высота */
 }
 .about__paragraph + .about__paragraph {
   padding-top: 26px; /* Внутренний верхний отступ */
@@ -189,6 +189,7 @@ button {
   gap: 16px; /* Промежутки между элементами */
   align-items: center; /* Выравнивает элементы по вертикали по центру */
   font-weight: 500; /* Толщина шрифта */
+  font-size: 16px; /* Размер шрифта */
   margin-top: 12px; /* Отступ сверху  */
 }
 
@@ -202,7 +203,7 @@ button {
     gap: 0px; /* Промежутки между элементами */
   }
   .about__read-more {
-    margin-top: 8px; /* Отступ сверху  */
+    margin-top: 13px; /* Отступ сверху  */
   }
 }
 
@@ -292,13 +293,16 @@ button {
   .about__text {
     max-height: 160px;/* Максимальная высота в 1120 */
   }
-  .about__row-right img {
+  .about__image img {
     min-width: 360px; /* Минимальная ширина в 1120 */
     min-height: 208px; /* Минимальная высота в 1120 */ 
   }
   .about__title::before {
     left: -24px; /* Изменяем левый отступ для экранов шириной до 1119px */
     top: -5px; /* Верхний отступ */
+  }
+  .about__read-more {
+    margin-top: 10px; /* Отступ сверху  */
   }
 }
   
@@ -324,7 +328,7 @@ button {
   .nav-links {
     gap: 16px; /* Промежутки между элементами */
   }
-  .about__row-right img { /* Картинка справа */
+  .about__image img { /* Картинка справа */
     min-width: 320px;  /* Минимальная ширина в 768 */
     min-height: 176px; /* Минимальная высота в 768 */
   }
@@ -348,5 +352,8 @@ button {
 @media screen and (max-width: 320px) { 
   .category-list {
     font-size: 14px;
+  }
+  .about__read-more {
+    margin-top: 16px; /* Отступ сверху  */
   }
 }

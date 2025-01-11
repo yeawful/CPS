@@ -1,5 +1,5 @@
-@import url(../css/reset.css); /* Сбрасывает стандартные стили браузера */
-@import url(../fonts/font.css); /* Стили шрифтов в отдельном css, чтобы тут не занимали место */
+@import url(src/css/reset.css); /* Сбрасывает стандартные стили браузера */
+@import url(src/fonts/font.css); /* Стили шрифтов в отдельном css, чтобы тут не занимали место */
 
 
 body {
